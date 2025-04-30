@@ -2,8 +2,8 @@ services:
   - type: web
     name: adonis-flashcards
     env: node
-# Dans render.yaml
-    buildCommand: npm install && node ace build --production && node ace migration:run --force
+    rootDir: AdonisCode  # Spécifie le répertoire racine pour les commandes
+    buildCommand: npm install && node ace build --production
     startCommand: node server.js
     healthCheckPath: /
     envVars:

@@ -3,14 +3,14 @@ FROM node:20-alpine
 # Définir le répertoire de travail
 WORKDIR /app
 
-# Copier package.json et package-lock.json
-COPY package*.json ./
+# Copier d'abord le dossier AdonisCode
+COPY ./AdonisCode/package*.json ./
 
 # Installer les dépendances
 RUN npm install --production
 
 # Copier le reste des fichiers de l'application
-COPY . .
+COPY ./AdonisCode ./
 
 # Build pour la production
 RUN npm run build
@@ -24,4 +24,4 @@ ENV PORT=10000
 ENV NODE_ENV=production
 
 # Le point d'entrée
-CMD ["node", "bin/server.s"]
+CMD ["node", "server.js"]
