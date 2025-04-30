@@ -2,7 +2,7 @@ services:
   - type: web
     name: adonis-flashcards
     env: node
-    buildCommand: npm ci && node ace build --production
+    buildCommand: npm install && node ace build --production
     startCommand: node server.js
     healthCheckPath: /
     envVars:
