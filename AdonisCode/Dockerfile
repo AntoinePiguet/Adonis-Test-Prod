@@ -4,7 +4,7 @@ FROM node:20-alpine
 WORKDIR ./AdonisCode
 
 # Copier d'abord le dossier AdonisCode
-COPY package*.json ./
+COPY ./AdonisCode/package*.json ./
 
 # Installer TOUTES les dépendances (y compris devDependencies)
 RUN npm install
@@ -27,4 +27,4 @@ ENV PORT=10000
 ENV NODE_ENV=production
 
 # Le point d'entrée
-CMD ["node", "bin/server.js"]
+CMD ["node", "bin/server.ts"]
