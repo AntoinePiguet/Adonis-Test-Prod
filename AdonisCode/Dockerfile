@@ -1,24 +1,25 @@
 FROM node:20-alpine
 
 # Définir le répertoire de travail
-WORKDIR ./AdonisCode
+WORKDIR /app
 
-# Copier d'abord le dossier AdonisCode
-COPY ./AdonisCode/package*.json ./
+# Copier les fichiers de configuration pour installer les dépendances
+COPY package*.json ./
 
-# Installer TOUTES les dépendances (y compris devDependencies)
+# Installer les dépendances
 RUN npm install
 
+# Installer le module pg pour PostgreSQL
+RUN npm install pg
+
 # Copier le reste des fichiers de l'application
-COPY ./AdonisCode ./
+COPY . .
 
 # Build pour la production
 RUN npm run build
 
 # Supprimer les devDependencies après le build
-# RUN npm prune --production
-WORKDIR ./build 
-RUN npm ci --omit="dev"  
+RUN npm prune --production
 
 # Exposer le port
 EXPOSE 10000
@@ -30,5 +31,3 @@ ENV NODE_ENV=production
 
 # Le point d'entrée
 CMD ["node", "bin/server.js"]
-
-RUN PGPASSWORD=VPWRK02GwrPlghrESKxYfPPVXE8MPFcJ psql -h dpg-d092kmhr0fns73dv6130-a.oregon-postgres.render.com -U db_flashcards_xi1o_user db_flashcards_xi1o
