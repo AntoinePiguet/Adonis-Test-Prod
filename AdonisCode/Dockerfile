@@ -24,4 +24,4 @@ ENV PORT=10000
 ENV NODE_ENV=production
 
 # Le point d'entrée
-CMD ["node", "server.js"]
+CMD ["node", "bin/server.s"]
