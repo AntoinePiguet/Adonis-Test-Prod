@@ -1,0 +1,25 @@
+3. Configurez correctement vos variables d'environnement sur Render
+Assurez-vous que vos variables d'environnement sont correctement définies dans Render et qu'elles utilisent les informations de connexion à la base de données PostgreSQL que Render vous a fournie.
+Étapes de mise en œuvre
+
+Supprimez cette ligne du Dockerfile et reconstruisez votre image
+
+Supprimez la ligne avec la commande psql
+Assurez-vous d'installer le module PostgreSQL : npm install pg
+
+
+Mettez à jour votre configuration de base de données
+
+Modifiez config/database.ts pour utiliser PostgreSQL
+Assurez-vous que la configuration utilise les variables d'environnement appropriées
+
+
+Configurez vos variables d'environnement sur Render
+
+Définissez DB_CONNECTION=pg
+Liez votre base de données PostgreSQL à votre service web
+
+
+Exécutez vos migrations
+
+Utilisez le Shell Render ou un script de build pour exécuter vos migrations

@@ -1,0 +1,82 @@
+# Configuration de l'environnement sur Render
+
+## Variables d'environnement à définir dans Render
+
+Configurez ces variables d'environnement dans l'interface Render pour votre service web :
+
+```
+APP_KEY=votre_clé_app_actuelle_ou_générez_en_une_nouvelle
+HOST=0.0.0.0
+PORT=10000
+NODE_ENV=production
+DB_CONNECTION=pg
+```
+
+## Configuration automatique des variables de base de données
+
+Si vous avez lié votre base de données PostgreSQL à votre service web, Render configurera automatiquement ces variables :
+
+- `DATABASE_URL`: URL complète de connexion
+- `PGHOST`: Hôte de la base de données
+- `PGPORT`: Port de la base de données
+- `PGUSER`: Nom d'utilisateur
+- `PGPASSWORD`: Mot de passe
+- `PGDATABASE`: Nom de la base de données
+
+## Personnalisation de la configuration database.ts
+
+Modifiez votre fichier `config/database.ts` pour utiliser les variables d'environnement de Render si elles existent :
+
+```typescript
+pg: {
+  client: 'pg',
+  connection: process.env.DATABASE_URL || {
+    host: Env.get('DB_HOST', '127.0.0.1'),
+    port: Env.get('DB_PORT', '5432'),
+    user: Env.get('DB_USER', 'root'),
+    password: Env.get('DB_PASSWORD', ''),
+    database: Env.get('DB_DATABASE', 'adonis'),
+    ssl: { rejectUnauthorized: false }
+  },
+  migrations: {
+    naturalSort: true,
+  },
+  healthCheck: false,
+  debug: false,
+},
+```
+
+Cette configuration utilisera l'URL de connexion fournie par Render si elle existe, sinon elle reviendra aux variables individuelles.
+
+## Comment exécuter des migrations sur Render
+
+Une fois votre application déployée, vous pouvez exécuter vos migrations de deux façons :
+
+### 1. Via le Shell Render
+
+1. Accédez à votre service web dans le tableau de bord Render
+2. Cliquez sur l'onglet "Shell"
+3. Exécutez la commande : `node ace migration:run --force`
+
+### 2. Via un script de build (recommandé)
+
+Créez un fichier `render-build.sh` à la racine de votre projet :
+
+```bash
+#!/usr/bin/env bash
+# exit on error
+set -o errexit
+
+npm install
+node ace build --production
+node ace migration:run --force
+npm prune --production
+```
+
+Puis mettez à jour votre configuration dans le tableau de bord Render ou dans render.yaml pour utiliser ce script :
+
+```yaml
+buildCommand: chmod +x render-build.sh && ./render-build.sh
+```
+
+Cela exécutera automatiquement vos migrations à chaque déploiement.
