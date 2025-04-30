@@ -18,5 +18,9 @@ COPY ./AdonisCode ./
 # Exposer le port
 EXPOSE 3333
 
+# Définir les variables d'environnement
+ENV HOST=0.0.0.0
+ENV PORT=3333
+
 # Le point d'entrée
 CMD ["npm", "run", "dev"]
