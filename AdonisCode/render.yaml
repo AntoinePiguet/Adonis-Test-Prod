@@ -3,8 +3,8 @@ services:
     name: adonis-flashcards
     env: node
     rootDir: AdonisCode  # Spécifie le répertoire racine pour les commandes
-    buildCommand: npm install && node ace build --production
-    startCommand: node server.js
+    buildCommand: npm install && node ace build --production && npm prune --production
+    startCommand: node server.ts
     healthCheckPath: /
     envVars:
       - key: NODE_ENV

@@ -6,8 +6,8 @@ WORKDIR /app
 # Copier d'abord le dossier AdonisCode
 COPY ./AdonisCode/package*.json ./
 
-# Installer les dépendances
-RUN npm install --production
+# Installer TOUTES les dépendances (y compris devDependencies)
+RUN npm install
 
 # Copier le reste des fichiers de l'application
 COPY ./AdonisCode ./
@@ -15,7 +15,10 @@ COPY ./AdonisCode ./
 # Build pour la production
 RUN npm run build
 
-# Exposer le port (Render utilisera PORT=10000)
+# Supprimer les devDependencies après le build
+RUN npm prune --production
+
+# Exposer le port
 EXPOSE 10000
 
 # Définir les variables d'environnement pour la production
@@ -24,4 +27,4 @@ ENV PORT=10000
 ENV NODE_ENV=production
 
 # Le point d'entrée
-CMD ["node", "server.js"]
+CMD ["node", "bin/server.ts"]
