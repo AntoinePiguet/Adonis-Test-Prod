@@ -16,7 +16,8 @@ COPY ./AdonisCode ./
 RUN npm run build
 
 # Supprimer les devDependencies après le build
-RUN npm prune --production
+# RUN npm prune --production
+RUN npm ci --omit="dev"  
 
 # Exposer le port
 EXPOSE 10000
