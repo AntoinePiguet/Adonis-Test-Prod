@@ -1,21 +1,22 @@
 FROM node:20-alpine
 
-WORKDIR /app
-
-# Installer netcat pour vérifier la disponibilité de la base de données
+# Installer netcat
 RUN apk add --no-cache netcat-openbsd
 
-# Copier d'abord package.json et package-lock.json
-COPY package*.json ./
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier le contenu du dossier AdonisCode dans /app
+COPY ./AdonisCode/package*.json ./
 
 # Installer les dépendances
 RUN npm install
 
-# Puis copier le reste des fichiers de l'application
-COPY . .
+# Copier le reste des fichiers de l'application
+COPY ./AdonisCode ./
 
 # Exposer le port
 EXPOSE 3333
 
-# Le point d'entrée sera défini dans docker-compose
+# Le point d'entrée
 CMD ["npm", "run", "dev"]
