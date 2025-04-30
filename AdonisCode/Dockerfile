@@ -17,7 +17,7 @@ RUN npm run build
 
 # Supprimer les devDependencies après le build
 # RUN npm prune --production
-RUN cd build 
+WORKDIR ./build 
 RUN npm ci --omit="dev"  
 
 # Exposer le port
