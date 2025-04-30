@@ -10,7 +10,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copier le reste des fichiers de l'application
-COPY ./
+COPY ./AdonisCode ./
 
 # Build pour la production
 RUN npm run build
