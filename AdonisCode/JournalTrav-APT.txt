@@ -1,0 +1,69 @@
+29.01.25
+[01:40]
+- explications du projets par m.Carrel, 
+- création du repo Flashcards, 
+- clonage du repo WOF
+- création du projet IceScrum
+- création du token IceScrum
+- explications du fonctionnement des PX et niveaux pour le projet
+- inscription pour le projet sur le marché de l'emploi et discussion sur le CdC
+- création du journal de travail
+
+[00:05]
+- sortie de cours
+
+[00:40]
+- j'ai commencé par directement créer et ajouter les fichiers manuellement ainsi que les routes et autres
+car je n'avais pas compris qu'Adonis faisait tout cela pour nous, j'ai donc perdu ~35 min à faire du travail que j'ai supprimé dès l'installation d'Adonis
+- Installation d'Adonis et création du repos Flshcards en suivant les consignes du CdC 
+- completition du journal de travail
+
+[01:05]
+- j'ai commencé à créer les template et layouts que j'aurais besoin pour le projet, mais j'ai rencontré un problème
+au niveau des routes, mon controller n'est pas pret du tout et j'en ai besoin pour le routage.
+- j'ai donc essayé de trouver une solution pour soit ne pas utiliser le controller tout de suite, soit coder le controller
+- j'ai donc essayé de coder le controller en adaptant les data que j'avais dans le dossier P_bulles2 mais le controller dépend de plein de choses entre autres les modèles etc...
+- j'essaie donc de trouver par ou il faut que je commence à coder pour obtenir un routage fonctionnel.
+
+[00:05]
+- sortie de cours
+
+[00:20]
+- complétition du journal de travail et commit push
+- Total d'heures de la journée : 3h35 + 25min de pause total.
+
+
+05.02.25
+
+[00:10]
+- j'ai commencé par envoyer un mail à deux élèves de 3ème pour leur demander un accès à leur git et ainsi voir leurs commit et donc leur stratégie de développement.
+
+[01:10]
+- J'ai ajouté une page footer dans laquelle j'ai juste mis les components et un petit texte
+- j'ai modifié mon header pour que l'image s'affiche bien et que le lien redirige bien vers une route qui mène à l'accueil.
+- ajouté un lien appelé log out qui me redirige vers la page de login.
+- j'ai ajouté un css à mon projet pour le rendre plus lisible.
+
+[01:00]
+- j'ai ajouté une page loginHomePage qui me permet de choisir entre créer un compte ou me logger.
+- cette page est devenue la page par défaut quand on arrive sur le site et elle est aussi devenue le lien de log out.
+- j'ai créé une page inscription qui me permet de créer un compte (la méthode post ne fait rien pour l'instant) pour ce faire, le user dois rentrer un username,
+un password et confirmer le password pour que le bouton apparaisse (le bouton apparait tout le temps -> à corriger)
+- j'ai bien sur créé les routes nécessaires au fonctionnement du site.
+
+[00:10]
+- j'ai rempli mon journal de travail de la session et commité.
+
+
+//note : || node ace migration:fresh --seed //drop la db puis execute le script de création puis le seeder qui fait des insert into
+
+12.02.25
+
+[1:30]
+- j'ai essayé d'importer des modules d'Adonis dans le but de rendre l'authentification plus simple, mais ça n'a rendu les choses que plus difficiles
+j'ai essayé avec les packages de @adonis/auth mais ça n'a pas marché alors j'ai ensuite essyé avec @adonis/ally mais de nouveau ce n'était pas la consigne.
+
+[2:30]
+j'ai modifié ma migration ainsi qu'ajouté un seeder, un modèle pour le user et un userController et un validator.
+j'ai fait cette compilation de choses pour pouvoir créer un user, cet objectif n'est pas encore atteint depuis le site,
+mais la migration se fait correctement et l'emploi du seeder est bon, mes data s'enregistrent correctement dans la db.
