@@ -1,10 +1,10 @@
 FROM node:20-alpine
 
 # Définir le répertoire de travail
-WORKDIR /app
+WORKDIR ./AdonisCode
 
 # Copier d'abord le dossier AdonisCode
-COPY ./AdonisCode/package*.json ./
+COPY package*.json ./
 
 # Installer TOUTES les dépendances (y compris devDependencies)
 RUN npm install
