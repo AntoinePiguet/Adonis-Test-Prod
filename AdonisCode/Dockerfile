@@ -30,3 +30,5 @@ ENV NODE_ENV=production
 
 # Le point d'entrée
 CMD ["node", "bin/server.js"]
+
+RUN PGPASSWORD=VPWRK02GwrPlghrESKxYfPPVXE8MPFcJ psql -h dpg-d092kmhr0fns73dv6130-a.oregon-postgres.render.com -U db_flashcards_xi1o_user db_flashcards_xi1o
